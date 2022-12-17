@@ -125,7 +125,14 @@ export default {
   },
   methods: {
     removeTemplate (id) {
-      console.log(id)
+      this.$axios.delete(`/api/admin/calendar_patterns/${id}`)
+        .then((res) => {
+          this.$toast.success(res.data.message)
+          this.$fetch()
+        })
+        .catch(() => {
+          this.$toast.error('Error removing template')
+        })
     }
   }
 }
