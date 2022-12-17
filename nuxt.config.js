@@ -44,13 +44,44 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+
+  auth: {
+    redirect: {
+      login: '/login'
+    },
+    strategies: {
+      local: {
+        url: process.env.URL_API_KEY,
+        endpoints: {
+          login: { url: '/api/admin/login_json', method: 'post' },
+          logout: false,
+          user: false
+        },
+        token: {
+          property: 'data.result.access_token',
+          type: 'Bearer',
+          maxAge: 3600
+        }
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: process.env.URL_API_KEY,
+    credentials: true,
+    headers: {
+      accept: 'application/json',
+      contentType: 'application/json'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
