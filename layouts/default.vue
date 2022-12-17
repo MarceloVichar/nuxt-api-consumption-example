@@ -4,9 +4,11 @@
       <div>ColorsTemplates</div>
       <div>Welcome</div>
     </div>
-    <div class="p-4">
-      <Nuxt />
-    </div>
+    <transition name="page" mode="out-in">
+      <div class="p-4">
+        <Nuxt />
+      </div>
+    </transition>
   </div>
 </template>
 

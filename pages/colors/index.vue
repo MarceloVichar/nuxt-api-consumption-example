@@ -106,7 +106,7 @@ export default {
       .then((res) => {
         this.tableData.items = res.data?.data?.entities
         this.tableData.meta = res.data?.data?.pagination
-        this.$toast.success(res.data?.message)
+        this.$toast.success(res.data?.message, { position: 'bottom-right' })
       })
       .finally(() => { this.isSending = false })
   },

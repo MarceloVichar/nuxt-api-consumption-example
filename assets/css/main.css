@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.75s;
+}
+
+.page-enter {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
