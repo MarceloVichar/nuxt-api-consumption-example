@@ -2,34 +2,30 @@
   <div class="flex flex-col gap-4 py-6 lg:pt-0">
     <template v-if="isLoading">
       <div class="flex justify-center items-center">
-        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+        <div class="mt-24 spinner-border animate-spin inline-block w-12 h-12 border border-primary border-4 rounded-full" />
       </div>
     </template>
     <div v-else class="flex flex-col gap-4">
       <div class="overflow-x-auto shadow-md">
         <table class="overflow-x-scroll table table-compact w-full shadow-lg">
           <thead class="hidden lg:table-header-group">
-            <tr class="bg-base-200 relative shadow-md">
+            <tr class="bg-base-100 relative shadow-md">
               <th
                 v-for="header in dataTable.headers"
                 :key="header.key"
-                class="first-letter:uppercase lowercase bg-transparent text-primary text-opacity-90 py-2.5 font-semibold tracking-wider !z-0 border-0 border-base-200 border-opacity-20 last:border-none first:!static"
-                :class="{'lg:text-end': header.key === 'actions' }"
+                class="first-letter:uppercase lowercase bg-base-100 text-primary text-center text-opacity-90 py-2.5 font-semibold tracking-wider !z-0 border-0 border-base-200 border-opacity-20 last:border-none first:!static"
               >
                 {{ header.label }}
               </th>
             </tr>
           </thead>
-          <tbody class="lg:table-row-group grid sm:grid-cols-2 gap-4 lg:gap-0 bg-transparent">
-            <tr v-for="item in dataTable.items" :key="item.id" class="lg:table-row block bg-base-200 rounded-lg last:border-b-0 lg:border-b border-primary border-opacity-20">
+          <tbody class="lg:table-row-group grid sm:grid-cols-2 gap-4 lg:gap-0 bg-base-100">
+            <tr v-for="item in dataTable.items" :key="item.id" class="lg:table-row block bg-base-100 rounded-lg last:border-b-0 lg:border-b border-primary border-opacity-20">
               <td
                 v-for="header in dataTable.headers"
                 :key="header.key"
                 :data-title="header.label + ':'"
-                class="flex items-center justify-between lg:border-l first:border-l-0 last:border-b-0 lg:table-cell lg:text-start lg:border-b-0 border-b border-primary border-opacity-20 text-end text-neutral text-opacity-70 bg-transparent"
-                :class="{'lg:text-end': header.key === 'actions' }"
+                class="flex items-center justify-between lg:border-l first:border-l-0 last:border-b-0 lg:table-cell lg:text-center lg:border-b-0 border-b border-primary border-opacity-20 text-end text-neutral text-opacity-70 bg-base-100 p-3"
               >
                 <slot :name="generateColumnName(header.key)" :item="item">
                   {{ getItemAttr(item, header.key) }}
@@ -39,7 +35,7 @@
           </tbody>
         </table>
       </div>
-      <Pagination v-if="dataTable.meta.last_page > 1" :value="dataTable.meta" @setPage="val => $emit('setPage', val)" />
+      <Pagination v-if="dataTable.meta.total_pages > 1" :value="dataTable.meta" @setPage="val => $emit('setPage', val)" />
     </div>
   </div>
 </template>
