@@ -4,7 +4,11 @@
       <h1 class="text-3xl text-primary text-center">
         COLORS TEMPLATES
       </h1>
-      <button class="btn btn-primary btn-outline">
+      <button
+        class="btn btn-primary btn-outline"
+        title="create template"
+        @click="$router.push('/colors/create')"
+      >
         Create template
       </button>
     </div>
@@ -44,15 +48,27 @@
           Example text
         </div>
       </template>
-      <template #columnActions="{}">
+      <template #columnActions="{item}">
         <div class="flex gap-2 justify-end lg:justify-center">
-          <button class="btn btn-info btn-sm" title="Show">
+          <button
+            class="btn btn-info btn-sm"
+            title="Show"
+            @click="$router.push(`/colors/${item.id}`)"
+          >
             <span class="material-icons">search</span>
           </button>
-          <button class="btn btn-warning btn-sm" title="Edit">
+          <button
+            class="btn btn-warning btn-sm"
+            title="Edit"
+            @click="$router.push(`/colors/${item.id}/edit`)"
+          >
             <span class="material-icons">edit</span>
           </button>
-          <button class="btn btn-error btn-sm" title="Delete">
+          <button
+            class="btn btn-error btn-sm"
+            title="Delete"
+            @click="removeTemplate(item.id)"
+          >
             <span class="material-icons">close</span>
           </button>
         </div>
@@ -94,12 +110,22 @@ export default {
       })
       .finally(() => { this.isSending = false })
   },
+  computed: {
+    it () {
+      return it
+    }
+  },
   watch: {
     '$route.query': {
       handler () {
         this.$fetch()
       },
       deep: true
+    }
+  },
+  methods: {
+    removeTemplate (id) {
+      console.log(id)
     }
   }
 }
