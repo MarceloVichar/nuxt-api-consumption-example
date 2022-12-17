@@ -5,7 +5,7 @@
         COLORS TEMPLATES
       </h1>
       <button
-        class="btn btn-primary btn-outline"
+        class="btn btn-primary"
         title="create template"
         @click="$router.push('/colors/create')"
       >
@@ -50,13 +50,6 @@
       </template>
       <template #columnActions="{item}">
         <div class="flex gap-2 justify-end lg:justify-center">
-          <button
-            class="btn btn-info btn-sm"
-            title="Show"
-            @click="$router.push(`/colors/${item.id}`)"
-          >
-            <span class="material-icons">search</span>
-          </button>
           <button
             class="btn btn-warning btn-sm"
             title="Edit"
