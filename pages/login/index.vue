@@ -40,8 +40,11 @@ export default {
         data: {
           login: this.login
         }
-      }).then(() => {
+      }).then((res) => {
         this.$router.push('/')
+        this.$toast.success(res.data.message)
+      }).catch((err) => {
+        this.$toast.error(err.response.data.data)
       })
     }
   }
